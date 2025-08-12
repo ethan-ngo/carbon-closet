@@ -11,6 +11,8 @@ export default async function ProtectedPage() {
     redirect("/auth/login");
   }
 
+  const { data: { publicUrl } } =  supabase.storage.from('clothes').getPublicUrl('lebron.jpg')
+  
   return (
     <div className="flex-1 w-full flex flex-col gap-12">
       <div className="w-full">
@@ -19,6 +21,7 @@ export default async function ProtectedPage() {
           This is a protected page that you can only see as an authenticated
           user
         </div>
+        <img src={publicUrl}></img>
       </div>
       <div className="flex flex-col gap-2 items-start">
         <h2 className="font-bold text-2xl mb-4">Your user details</h2>
